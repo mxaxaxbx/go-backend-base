@@ -27,6 +27,8 @@ func (b *Broker) Config() *Config {
 	return b.config
 }
 
+var S Server
+
 func NewServer(ctx context.Context, config *Config) (*Broker, error) {
 	if config.Port == "" {
 		return nil, errors.New("Port is required")
@@ -36,6 +38,8 @@ func NewServer(ctx context.Context, config *Config) (*Broker, error) {
 		config: config,
 		router: mux.NewRouter(),
 	}
+
+	S = broker
 
 	return broker, nil
 }
