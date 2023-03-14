@@ -36,4 +36,8 @@ func BindRoutes(s server.Server, r *mux.Router) {
 	home := r.PathPrefix("").Subrouter()
 	home.Use(middleware.AddHeaders(s))
 	home.HandleFunc("/", handlers.HomeHandler).Methods(http.MethodGet)
+
+	auth := r.PathPrefix("/auth").Subrouter()
+	auth.Use(middleware.AddHeaders(s))
+	auth.HandleFunc("/login", handlers.LoginHandler).Methods(http.MethodPost)
 }

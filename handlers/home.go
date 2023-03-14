@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mxaxaxbx/go-backend-base/model"
+	"github.com/mxaxaxbx/go-backend-base/models"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(&model.MainResponse{
+	json.NewEncoder(w).Encode(&models.MainResponse{
 		Code:    http.StatusOK,
 		Message: "OK",
 		Data:    make(map[string]string),

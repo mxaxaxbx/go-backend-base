@@ -1,4 +1,4 @@
-package model
+package models
 
 type MainResponse struct {
 	Code    int64       `json:"code"`
