@@ -8,6 +8,7 @@ import (
 
 	"github.com/golang-jwt/jwt"
 	"github.com/mxaxaxbx/go-backend-base/models"
+	"github.com/mxaxaxbx/go-backend-base/utils"
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -21,9 +22,10 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	JWTSecret := os.Getenv("JWTSECRET")
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString(JWTSecret)
+	tokenString, err := token.SignedString([]byte(JWTSecret))
 
 	if err != nil {
+		utils.Log(err.Error())
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(&models.MainResponse{
 			Code:    http.StatusInternalServerError,
