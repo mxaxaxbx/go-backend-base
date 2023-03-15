@@ -11,9 +11,12 @@ import (
 	"github.com/mxaxaxbx/go-backend-base/handlers"
 	"github.com/mxaxaxbx/go-backend-base/middleware"
 	"github.com/mxaxaxbx/go-backend-base/server"
+	"github.com/mxaxaxbx/go-backend-base/utils"
 )
 
 func main() {
+	utils.InitJobs()
+
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
@@ -30,6 +33,7 @@ func main() {
 	}
 
 	s.Start(BindRoutes)
+
 }
 
 func BindRoutes(s server.Server, r *mux.Router) {
